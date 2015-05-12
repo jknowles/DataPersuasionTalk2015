@@ -14,6 +14,9 @@ Most data presentations are attempting to make an argument. An argument is a sta
 
 Storytelling is about constructing a compelling narrative, but has no need for fact.
 
+Storytelling invites alternatives with no way to equate them.
+
+Persuasion and argument set the ground rules, define the comparisons, and focus the audience.
 
 ### Visualization
 
@@ -87,6 +90,8 @@ The key is to know your audience.
 
 ### Closing the Argument
 
-Sources
+### Resources
 
 Rottenberg, Annette. The Elements of Argument. 7th edition. 2003.
+
+Rad Presenters Podcast.
