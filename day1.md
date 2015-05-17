@@ -282,6 +282,29 @@ ggplot(race_diff, aes(race, pdiff, fill = race)) +
   <div style="margin-left:auto;margin-right:auto;"><img src = "img/paperflying.gif"></div>
 </div>
 
+### Axes Are Dangerous -- Never Use Two
+<div style="display:table-cell;vertical-align:middle;">
+  <div style="margin-left:auto;margin-right:auto;">
+  <img src ="img/spuriouscorr1.png" style="display:block;margin-left:auto;margin-right:auto"></div>
+</div>
+
+### Axes Are Dangerous -- Never Use Two
+
+<div style="display:table-cell;vertical-align:middle;">
+  <div style="margin-left:auto;margin-right:auto;">
+<img src = "img/spuriouscorr2.png" style="display:block;margin-left:auto;margin-right:auto"></div>
+</div>
+
+### Axes Are Dangerous -- Never Use Two
+
+<div style="display:table-cell;vertical-align:middle;">
+  <div style="margin-left:auto;margin-right:auto;">
+<img src = "img/spuriouscorr3.png" style="display:block;margin-left:auto;margin-right:auto"></div>
+</div>
+
+**More Fun**:
+[Tyler Vigen -- http://www.tylervigen.com](http://www.tylervigen.com)
+
 ### Closing the Argument
 
 ### Resources
