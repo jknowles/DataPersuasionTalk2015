@@ -16,6 +16,8 @@ Storytelling is about constructing a compelling narrative, but has no need for f
 
 Storytelling invites alternatives with no way to equate them.
 
+Storytelling implies an ending, resolution, or moral and does not require the audience to join the action.
+
 Persuasion and argument set the ground rules, define the comparisons, and focus the audience.
 
 ### Visualization
@@ -78,11 +80,28 @@ The key is to know your audience.
 - Assumed values
 - Definitions
 
+### Why Opinions Change (Pandey et al, 2014)
+1. *Struck by evidence*
+2. Evidence strengthens existing views
+3. *Boomerang* -- when your argument is weak
+
+### Why Opinions Don't Change (Pandey et al, 2014)
+1. Sketpical of Data
+2. Skeptical of Logic
+3. Core Beliefs
+4. Complexity
+
 ### Persuasion
 
 1. Ethos
 2. Pathos
 3. Visualization
+
+### Lessons So Far
+1. Ethos: Build trust in the data.
+2. Ethos: Build trust in the framing.
+3. Pathos: Be mindful of values and address core shared values.
+4. Visualization: Clarity and drama
 
 ### Visual Elements
 
