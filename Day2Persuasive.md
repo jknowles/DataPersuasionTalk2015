@@ -170,4 +170,18 @@ Axes Are Dangerous -- Never Use Two
 [Tyler Vigen -- http://www.tylervigen.com](http://www.tylervigen.com)
 
 
+Maps and Animation
+==================================
 
+<div style="display:table-cell;vertical-align:middle;">
+  <div style="margin-left:auto;margin-right:auto;">
+<img src = "img/evenFRLmap.gif" style="display:block;margin-left:auto;margin-right:auto"></div>
+</div>
+
+Models and Small Multiples
+==================================
+
+<div style="display:table-cell;vertical-align:middle;">
+  <div style="margin-left:auto;margin-right:auto;">
+<img src = "img/ELP_Survival_Curves_DRAFT.png" style="display:block;margin-left:auto;margin-right:auto"></div>
+</div>
