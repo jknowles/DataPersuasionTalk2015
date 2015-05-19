@@ -79,7 +79,11 @@ More Notes on Color
 
 Sequential Example
 ========================================================
-<img src="CW_dplot.png" style="display:block;margin-left:auto;margin-right:auto">
+<div style="display:table-cell;vertical-align:middle;">
+  <div style="margin-left:auto;margin-right:auto;">
+    <img src="img/CW_dplot.png"> 
+    </div>
+</div>
 
 More Notes on Color
 ========================================================
@@ -175,7 +179,7 @@ Maps and Animation
 
 <div style="display:table-cell;vertical-align:middle;">
   <div style="margin-left:auto;margin-right:auto;">
-<img src = "img/evenFRLmap.gif" style="display:block;margin-left:auto;margin-right:auto"></div>
+<img src = "img/evenFRLmap.gif" style="display:block;margin-left:auto;margin-right:auto;height:600px"></div>
 </div>
 
 Models and Small Multiples
@@ -185,3 +189,18 @@ Models and Small Multiples
   <div style="margin-left:auto;margin-right:auto;">
 <img src = "img/ELP_Survival_Curves_DRAFT.png" style="display:block;margin-left:auto;margin-right:auto"></div>
 </div>
+
+Models and Context
+==================================
+<div style="display:table-cell;vertical-align:middle;">
+  <div style="margin-left:auto;margin-right:auto;">
+<img src = "img/EWSReview.png" style="display:block;margin-left:auto;margin-right:auto"></div>
+</div>
+
+Models and Context
+==================================
+<div style="display:table-cell;vertical-align:middle;">
+  <div style="margin-left:auto;margin-right:auto;">
+<img src = "img/EWSfull.png" style="display:block;margin-left:auto;margin-right:auto"></div>
+</div>
+
