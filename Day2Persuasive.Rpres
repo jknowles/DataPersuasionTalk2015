@@ -1,0 +1,381 @@
+Persuasive Data Day 2
+========================================================
+author: Jason Becker and Jared Knowles
+date: 2015-05-20
+
+Talk Outline
+========================================================
+
+1. Iterative development process.
+2. Explain. Explain. Explain.
+3. Visualization in practice
+
+User-Centered Design
+========================================================
+* Plan
+* Research
+* Design
+* Pilot
+* Measure
+* Design
+* Pilot
+* Measure
+* Design ...
+
+How to Prototype 
+========================================================
+* Plan: What do I want my audience to learn?
+* Research: Does my visualization demonstrate this?
+* Design: Is my visualization *focused* on this?
+
+How to Test
+========================================================
+* Pilot: Use someone representative of audience knowledge and values.
+  - Explain the raw data (what each axes and shape represents)
+* Measure: Ask the pattern they see in the data.
+  - Explain and show the pattern you are trying to demonstrate if it is different.
+  - Ask if the desired pattern is hard to *see* and/or hard to *understand*.
+
+Iterate
+========================================================
+* When data is hard to *see*, consider:
+  - Changing colors
+  - Changing graph type.
+  - Introducing labels/annotations.
+
+Iterate
+========================================================
+* When data is hard to *understand*, consider:
+  - Summarzing data
+  - Faceting data/small multiples
+  - Producing more than one visual to demonstrate concept in smaller steps.
+
+Color
+========================================================
+
+<div style="display:table-cell;vertical-align:middle;">
+  <div style="margin-left:auto;margin-right:auto;">
+    <img src = "img/badcolor.png" style="display:block;margin-left:auto;margin-right:auto;"></div>
+</div>
+
+Color Correction
+========================================================
+
+```{r, echo=FALSE, fig.align='center', fig.height=10, fig.width=16, fig.retina=TRUE}
+library(ggplot2)
+library(scales)
+library(dplyr)
+model_data <- data.frame(
+  model = rep(c('Model 1', 'Model 2', 'Model 3'), 4),
+  race = c(rep('Black/AA', 3),
+           rep('Hispanic/Latino', 3),
+           rep('Asian', 3),
+           rep('White', 3)),
+  prob = c(.28, .78, .95, .39, .84, .96, .69, .91, .98, .56, .91, .97))
+
+ggplot(model_data, aes(race, prob, fill = race)) +
+  geom_bar(stat='identity') +
+  scale_y_continuous('', labels = percent_format()) +
+  scale_x_discrete('') +
+  geom_text(aes(x = race, y = 0.02, label = race),
+            angle = 90, color = 'white', family = 'Open Sans', hjust = 0,
+            size = 12) +
+  ggtitle('Probablity of College Readiness by Race and Model') +
+  scale_fill_manual(values = c('#962A85', '#4BA5AD', '#A7CC46', '#DAD072')) +
+  facet_grid(. ~ model) +
+  theme_bw() +
+  theme(axis.ticks.x = element_blank(),
+        axis.text.x = element_blank(),
+        legend.title = element_blank(), 
+        panel.border = element_blank(),
+        legend.position = 'none',
+        strip.background = element_rect(fill = '#626366'),
+        strip.text = element_text(color = 'white', size = 18, 
+                                  family = 'Open Sans'),
+        title = element_text(size = 24, family = 'Open Sans'))
+```
+
+More Notes on Color
+========================================================
+
+```{r, echo = FALSE, fig.align='center', fig.height=10, fig.width=16, fig.retina=TRUE}
+library(RColorBrewer)
+display.brewer.all(type = 'qual')
+```
+
+**Qualitative**
+
+More Notes on Color
+========================================================
+
+```{r, echo = FALSE, fig.align='center', fig.height=10, fig.width=16, fig.retina=TRUE}
+library(RColorBrewer)
+display.brewer.all(type = 'seq')
+```
+
+**Sequential**
+
+Sequential Example
+========================================================
+<img src="CW_dplot.png" style="display:block;margin-left:auto;margin-right:auto">
+
+More Notes on Color
+========================================================
+
+```{r, echo = FALSE, fig.align='center', fig.height=10, fig.width=16, fig.retina=TRUE}
+library(RColorBrewer)
+display.brewer.all(type = 'div')
+```
+
+**Divergent**
+
+Divergent Example
+========================================================
+<img src="img/divergent.gif" style="display:block;margin-left:auto;margin-right:auto">
+
+Divergent Example
+========================================================
+<img src ="img/LGPlot.png" style="display:block;margin-left:auto;margin-right:auto;width:1280px">
+
+Making Comparisons -- Four Visuals
+========================================================
+
+```{r, echo=FALSE, fig.align='center', fig.height=7, fig.width=10, fig.retina=TRUE}
+library(ggplot2)
+library(scales)
+library(RColorBrewer)
+race <- data.frame(race = rep(c('Asian', 'Black', 'White', 
+                                'Hispanic', 'Native American'), 
+                              2),
+                   transfer_status = c(rep('Remain', 5), rep('Transfer Out', 5)),
+                   percent = c(0.10, 0.43, 0.27, 0.15, 0.05, 
+                               0.08, 0.46, 0.30, 0.14, 0.01))
+
+ggplot(race, aes("", percent, fill = race)) +
+  geom_bar(stat='identity', position = 'stack', width = 1) +
+  coord_polar(theta = 'y') +
+  scale_x_discrete('') +
+  scale_y_continuous('', breaks = NULL) +
+  scale_fill_manual('',
+                    values = c('#962A85', '#4BA5AD', '#A7CC46', '#D86C6D', 
+                               '#DAD072', '#626366')) + 
+  facet_grid(.~transfer_status) +
+  ggtitle('Comparing Racial Composition of 9th Grade Students\nThat Transfer Out of High School Before Completing') +
+  theme_bw() +
+  theme(panel.border = element_blank(), 
+        panel.grid = element_blank(),
+        text = element_text(family = 'sans', size = 16),
+        legend.position = 'bottom')
+
+```
+
+Making Comparisons -- Four Visuals
+========================================================
+
+```{r, echo=FALSE, fig.align='center', fig.height=7, fig.width=10, fig.retina=TRUE}
+ggplot(race, aes(race, percent, fill = transfer_status)) +
+  geom_bar(stat='identity', position = 'dodge') +
+  scale_fill_manual('', values = c('#962A85', '#4BA5AD')) +
+  scale_x_discrete('') +
+  scale_y_continuous('', labels = percent_format()) +
+  #facet_grid(transfer_status~.) +
+  coord_flip() +
+  ggtitle('Comparing Racial Composition of 9th Grade Students\nThat Transfer Out of High School Before Completing') +
+  theme_bw() +
+  theme(panel.border = element_blank(), 
+        panel.grid = element_blank(),
+        text = element_text(family = 'sans', size = 16))
+                                       
+```
+
+Making Comparisons -- Four Visuals
+========================================================
+
+```{r, echo=FALSE, fig.align='center', fig.height=7, fig.width=10, fig.retina=TRUE}
+library(dplyr)
+library(tidyr)
+library(magrittr)
+race_diff <- race %>%
+  spread(transfer_status, percent) %>%
+  mutate(diff = Remain-`Transfer Out`)
+
+ggplot(race_diff, aes(race, diff, fill = race)) +
+  geom_bar(stat='identity', position='dodge') +
+  geom_hline(y=0, color='#888888') +
+  scale_fill_manual('',
+                    values = c('#962A85', '#4BA5AD', 
+                               '#A7CC46', '#D86C6D', 
+                               '#DAD072')) +
+  scale_y_continuous('', labels = percent_format()) +
+  scale_x_discrete('') +
+  coord_flip() +
+  ggtitle('Percentage Point Difference Between\nStudents Who Remain and Who Transfer Out') +
+  theme_bw() +
+  theme(panel.border = element_blank(), 
+        panel.grid = element_blank(),
+        text = element_text(family = 'sans', size = 16),
+        legend.position = 'none')
+
+```
+
+Making Comparisons -- Four Visuals
+========================================================
+
+```{r, echo=FALSE, fig.align='center', fig.height=7, fig.width=10, fig.retina=TRUE}
+race_diff %<>% mutate(pdiff = diff/Remain)
+ggplot(race_diff, aes(race, pdiff, fill = race)) +
+  geom_bar(stat='identity', position='dodge') +
+  geom_hline(y=0, color='#888888') +
+  scale_fill_manual('',
+                    values = c('#962A85', '#4BA5AD', 
+                               '#A7CC46', '#D86C6D', 
+                               '#DAD072')) +
+  scale_y_continuous('', labels = percent_format(), limits=c(-.2,1)) +
+  scale_x_discrete('') +
+  coord_flip() +
+  ggtitle('Percentage Difference Between\nStudents Who Remain and Who Transfer Out') +
+  theme_bw() +
+  theme(panel.border = element_blank(), 
+        panel.grid = element_blank(),
+        text = element_text(family = 'sans', size = 16),
+        legend.position = 'none')
+
+```
+
+Making Comparisons -- Four Visuals
+========================================================
+
+```{r, echo=FALSE, fig.align='center', fig.height=10, fig.width=16, fig.retina=TRUE}
+multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
+  require(grid)
+  plots <- c(list(...), plotlist)
+  numPlots = length(plots)
+  if (is.null(layout)) {
+    layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
+                    ncol = cols, nrow = ceiling(numPlots/cols))
+  }
+ if (numPlots==1) {
+    print(plots[[1]])
+  } else {
+    grid.newpage()
+    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+    for (i in 1:numPlots) {
+      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
+                                      layout.pos.col = matchidx$col))
+    }
+  }
+}
+multiplot(ggplot(race, aes("", percent, fill = race)) +
+  geom_bar(stat='identity', position = 'stack', width = 1) +
+  coord_polar(theta = 'y') +
+  scale_x_discrete('') +
+  scale_y_continuous('', breaks = NULL) +
+  scale_fill_manual('',
+                    values = c('#962A85', '#4BA5AD', '#A7CC46', '#D86C6D', 
+                               '#DAD072', '#626366')) + 
+  facet_grid(.~transfer_status) +
+  ggtitle('Comparing Racial Composition of 9th Grade Students\nThat Transfer Out of High School Before Completing') +
+  theme_bw() +
+  theme(panel.border = element_blank(), 
+        panel.grid = element_blank(),
+        text = element_text(family = 'sans', size = 12),
+        legend.position = 'bottom'),
+ggplot(race, aes(race, percent, fill = transfer_status)) +
+  geom_bar(stat='identity', position = 'dodge') +
+  scale_fill_manual('', values = c('#962A85', '#4BA5AD')) +
+  scale_x_discrete('') +
+  scale_y_continuous('', labels = percent_format()) +
+  #facet_grid(transfer_status~.) +
+  coord_flip() +
+  ggtitle('Comparing Racial Composition of 9th Grade Students\nThat Transfer Out of High School Before Completing') +
+  theme_bw() +
+  theme(panel.border = element_blank(), 
+        panel.grid = element_blank(),
+        text = element_text(family = 'sans', size = 12)),
+ggplot(race_diff, aes(race, diff, fill = race)) +
+  geom_bar(stat='identity', position='dodge') +
+  geom_hline(y=0, color='#888888') +
+  scale_fill_manual('',
+                    values = c('#962A85', '#4BA5AD', 
+                               '#A7CC46', '#D86C6D', 
+                               '#DAD072')) +
+  scale_y_continuous('', labels = percent_format()) +
+  scale_x_discrete('') +
+  coord_flip() +
+  ggtitle('Percentage Point Difference Between\nStudents Who Remain and Who Transfer Out') +
+  theme_bw() +
+  theme(panel.border = element_blank(), 
+        panel.grid = element_blank(),
+        text = element_text(family = 'sans', size = 12),
+        legend.position = 'none'),
+ggplot(race_diff, aes(race, pdiff, fill = race)) +
+  geom_bar(stat='identity', position='dodge') +
+  geom_hline(y=0, color='#888888') +
+  scale_fill_manual('',
+                    values = c('#962A85', '#4BA5AD', 
+                               '#A7CC46', '#D86C6D', 
+                               '#DAD072')) +
+  scale_y_continuous('', labels = percent_format(), limits=c(-.2,1)) +
+  scale_x_discrete('') +
+  coord_flip() +
+  ggtitle('Percentage Difference Between\nStudents Who Remain and Who Transfer Out') +
+  theme_bw() +
+  theme(panel.border = element_blank(), 
+        panel.grid = element_blank(),
+        text = element_text(family = 'sans', size = 12),
+        legend.position = 'none')
+, cols = 2)
+
+```
+
+Surprise
+========================================================
+
+<div style="display:table-cell;vertical-align:middle;">
+  <div style="margin-left:auto;margin-right:auto;"><img src = "img/TransferCompareGraphics1.png"></div>
+</div>
+
+Why I chose it
+========================================================
+<div style="display:table-cell;vertical-align:middle;">
+  <div style="margin-left:auto;margin-right:auto;"><img src = "img/paperflying.gif"></div>
+</div>
+
+Research on best shapes
+========================================================
+<div style="display:table-cell;vertical-align:middle;">
+  <div style="margin-left:auto;margin-right:auto;"><img src = "img/error_by_graph.png" style="height:600px"></div>
+</div>
+
+[Heer and Bostock, 2010](http://idl.cs.washington.edu/papers/crowdsourcing-graphical-perception)
+
+Axes Are Dangerous -- Never Use Two
+========================================================
+
+<div style="display:table-cell;vertical-align:middle;">
+  <div style="margin-left:auto;margin-right:auto;">
+  <img src ="img/spuriouscorr1.png" style="display:block;margin-left:auto;margin-right:auto"></div>
+</div>
+
+Axes Are Dangerous -- Never Use Two
+========================================================
+
+<div style="display:table-cell;vertical-align:middle;">
+  <div style="margin-left:auto;margin-right:auto;">
+<img src = "img/spuriouscorr2.png" style="display:block;margin-left:auto;margin-right:auto"></div>
+</div>
+
+Axes Are Dangerous -- Never Use Two
+========================================================
+
+<div style="display:table-cell;vertical-align:middle;">
+  <div style="margin-left:auto;margin-right:auto;">
+<img src = "img/spuriouscorr3.png" style="display:block;margin-left:auto;margin-right:auto"></div>
+</div>
+
+**More Fun**:
+[Tyler Vigen -- http://www.tylervigen.com](http://www.tylervigen.com)
+
+
+
