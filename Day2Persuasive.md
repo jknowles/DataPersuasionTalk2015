@@ -7,8 +7,8 @@ Talk Outline
 ========================================================
 
 1. Iterative development process.
-2. Explain. Explain. Explain.
-3. Visualization in practice
+2. Visualization in practice
+3. Time to Review Your Persuasive Data
 
 User-Centered Design
 ========================================================
@@ -172,6 +172,12 @@ Axes Are Dangerous -- Never Use Two
 
 **More Fun**:
 [Tyler Vigen -- http://www.tylervigen.com](http://www.tylervigen.com)
+
+
+Themes and Reputation
+===========================
+![plot of chunk themeplots](Day2Persuasive-figure/themeplots-1.png) 
+
 
 
 Maps and Animation
