@@ -382,6 +382,23 @@ Axes Are Dangerous -- Never Use Two
 [Tyler Vigen -- http://www.tylervigen.com](http://www.tylervigen.com)
 
 
+Themes and Reputation
+===========================
+```{r themeplots, echo=FALSE}
+library(gridExtra)
+library(ggthemes)
+p1 <- qplot(hp, mpg, data=mtcars) + theme_economist() + labs(title = "Power and Fuel Economy")
+p2 <- qplot(hp, mpg, data=mtcars) +  theme_tufte() + labs(title = "Power and Fuel Economy")
+p3 <- qplot(hp, mpg, data=mtcars, color=factor(cyl)) + 
+  theme_excel() + scale_color_excel() + labs(title = "Power and Fuel Economy", 
+                                             color = "Cylinders")
+p4 <- qplot(hp,mpg,data=mtcars,color=factor(cyl)) + theme_stata() + labs(title = "Power and Fuel Economy", color = "Cylinders")
+
+grid.arrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
+```
+
+
+
 Maps and Animation
 ==================================
 
